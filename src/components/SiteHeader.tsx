@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Book, Menu, X } from "lucide-react";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const navLinks: NavLink[] = [
+  { label: "🗺️ Explore", href: "/explore", isRoute: true },
   { label: "Preview", href: "#preview" },
   { label: "Contents", href: "#contents" },
   { label: "Reviews", href: "#reviews" },
