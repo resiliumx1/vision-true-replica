@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Book, Menu, X } from "lucide-react";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const navLinks: NavLink[] = [
+  { label: "🗺️ Explore", href: "/explore", isRoute: true },
   { label: "Preview", href: "#preview" },
   { label: "Contents", href: "#contents" },
   { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const SiteHeader = () => {
+const SiteHeader = ({ forceDark = false }: { forceDark?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -18,6 +26,8 @@ const SiteHeader = () => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const isDark = forceDark && !scrolled;
 
   return (
     <>
@@ -29,7 +39,7 @@ const SiteHeader = () => {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between h-16 px-4 lg:px-8">
-          <a href="#" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <Book className={`w-6 h-6 ${scrolled ? "text-primary" : "text-turquoise"}`} />
             <div>
               <span className={`font-bold text-lg leading-none ${scrolled ? "text-foreground" : "text-primary-foreground"}`}>
@@ -39,20 +49,32 @@ const SiteHeader = () => {
                 2025 Edition
               </span>
             </div>
-          </a>
+          </Link>
 
           <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-turquoise ${
-                  scrolled ? "text-foreground" : "text-primary-foreground/90"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-turquoise ${
+                    scrolled ? "text-foreground" : "text-primary-foreground/90"
+                  } ${link.isRoute ? "text-turquoise" : ""}`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors hover:text-turquoise ${
+                    scrolled ? "text-foreground" : "text-primary-foreground/90"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <Button variant={scrolled ? "navCta" : "hero"} size="sm">
               Get the Guide - $12.99
             </Button>
@@ -76,16 +98,27 @@ const SiteHeader = () => {
             <button onClick={() => setMobileOpen(false)} className="self-end" aria-label="Close menu">
               <X className="w-6 h-6 text-foreground" />
             </button>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-lg font-medium text-turquoise hover:text-primary transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <Button variant="cta" size="lg" className="mt-4">
               Get the Guide - $12.99
             </Button>

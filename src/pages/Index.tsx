@@ -1,6 +1,7 @@
 import SiteHeader from "@/components/SiteHeader";
 import HeroSection from "@/components/HeroSection";
 import PreviewSection from "@/components/PreviewSection";
+import ExploreMapCTA from "@/components/ExploreMapCTA";
 import ContentsSection from "@/components/ContentsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import PricingSection from "@/components/PricingSection";
@@ -13,6 +14,7 @@ const Index = () => (
     <SiteHeader />
     <HeroSection />
     <PreviewSection />
+    <ExploreMapCTA />
     <ContentsSection />
     <TestimonialsSection />
     <PricingSection />

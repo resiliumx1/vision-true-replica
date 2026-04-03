@@ -78,10 +78,40 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        pulseRing: {
+          "0%": { transform: "scale(0.8)", opacity: "0.8" },
+          "100%": { transform: "scale(2.2)", opacity: "0" },
+        },
+        sunPulse: {
+          "0%, 100%": { transform: "scale(1)", opacity: "0.8" },
+          "50%": { transform: "scale(1.15)", opacity: "1" },
+        },
+        cloudDrift: {
+          "0%": { transform: "translateX(-20%)" },
+          "100%": { transform: "translateX(120%)" },
+        },
+        cardSlideUp: {
+          "0%": { opacity: "0", transform: "translateX(-50%) translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateX(-50%) translateY(0)" },
+        },
+        blink: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.3" },
+        },
+        gridPulse: {
+          "0%, 100%": { opacity: "0.03" },
+          "50%": { opacity: "0.07" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        pulseRing: "pulseRing 2s ease-out infinite",
+        sunPulse: "sunPulse 4s ease-in-out infinite",
+        cloudDrift: "cloudDrift 18s linear infinite",
+        cardSlideUp: "cardSlideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        blink: "blink 1.5s infinite",
+        gridPulse: "gridPulse 8s ease-in-out infinite",
       },
     },
   },
