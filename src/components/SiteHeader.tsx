@@ -17,7 +17,7 @@ const navLinks: NavLink[] = [
   { label: "FAQ", href: "#faq" },
 ];
 
-const SiteHeader = () => {
+const SiteHeader = ({ forceDark = false }: { forceDark?: boolean }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
