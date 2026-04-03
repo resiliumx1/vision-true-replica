@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      explorer_locations: {
+        Row: {
+          category: string
+          created_at: string | null
+          description: string | null
+          emoji: string | null
+          event_date: string | null
+          event_name: string | null
+          has_event: boolean | null
+          hours: string | null
+          id: string
+          image_url: string | null
+          is_featured: boolean | null
+          latitude: number
+          longitude: number
+          name: string
+          phone: string | null
+          popularity: number | null
+          updated_at: string | null
+          website_url: string | null
+          whatsapp_link: string | null
+        }
+        Insert: {
+          category: string
+          created_at?: string | null
+          description?: string | null
+          emoji?: string | null
+          event_date?: string | null
+          event_name?: string | null
+          has_event?: boolean | null
+          hours?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          latitude: number
+          longitude: number
+          name: string
+          phone?: string | null
+          popularity?: number | null
+          updated_at?: string | null
+          website_url?: string | null
+          whatsapp_link?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string | null
+          description?: string | null
+          emoji?: string | null
+          event_date?: string | null
+          event_name?: string | null
+          has_event?: boolean | null
+          hours?: string | null
+          id?: string
+          image_url?: string | null
+          is_featured?: boolean | null
+          latitude?: number
+          longitude?: number
+          name?: string
+          phone?: string | null
+          popularity?: number | null
+          updated_at?: string | null
+          website_url?: string | null
+          whatsapp_link?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
